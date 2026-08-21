@@ -10,15 +10,14 @@ jobs:
 
   test:
     runs-on: ${{ matrix.os }}
-<<<<<<< HEAD
-=======
+
     env:
       HOST: localhost
       PORT: 5432
       USER: root
       PASSWORD: root
       DBNAME: root
->>>>>>> ce3e0b49ad7319102989c56701c22bf598710d17
+
     strategy:
       matrix:
         go_version: ['1.18', '1.17', '>=1.18']
@@ -42,16 +41,7 @@ jobs:
       
   build:
     needs: test
-<<<<<<< HEAD
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: ['ubuntu-latest', 'ubuntu-22.04']
-    steps:
-    - uses: actions/checkout@v3
-    - name: Build
-      run: go build -v main.go
-=======
+
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -68,5 +58,3 @@ jobs:
     needs: build
     uses: ./.github/workflows/docker.yml
     secrets: inherit
-    
->>>>>>> ce3e0b49ad7319102989c56701c22bf598710d17
