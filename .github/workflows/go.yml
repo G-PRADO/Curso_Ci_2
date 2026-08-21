@@ -10,6 +10,15 @@ jobs:
 
   test:
     runs-on: ${{ matrix.os }}
+<<<<<<< HEAD
+=======
+    env:
+      HOST: localhost
+      PORT: 5432
+      USER: root
+      PASSWORD: root
+      DBNAME: root
+>>>>>>> ce3e0b49ad7319102989c56701c22bf598710d17
     strategy:
       matrix:
         go_version: ['1.18', '1.17', '>=1.18']
@@ -31,9 +40,9 @@ jobs:
     - name: Test
       run: go test -v main_test.go 
       
-  
   build:
     needs: test
+<<<<<<< HEAD
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -42,3 +51,22 @@ jobs:
     - uses: actions/checkout@v3
     - name: Build
       run: go build -v main.go
+=======
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build
+      run: go build -v main.go
+
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v7.0.1
+      with:
+        name: programa
+        path: main
+
+  docker:
+    needs: build
+    uses: ./.github/workflows/docker.yml
+    secrets: inherit
+    
+>>>>>>> ce3e0b49ad7319102989c56701c22bf598710d17
