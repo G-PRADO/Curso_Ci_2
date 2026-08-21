@@ -18,3 +18,11 @@ jobs:
       with:
         username: gprado10
         password: ${{ secrets.PASSWORD_DOCKER_HUB }}
+
+    - name: Build and push Docker images
+      uses: docker/build-push-action@v7.3.0
+      with:
+        context: .
+        file: ./dockerfile
+        push: true
+        tags: gprado10/go_ci:${{ github.ref_name }}
