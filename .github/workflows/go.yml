@@ -37,7 +37,6 @@ jobs:
     - name: Test
       run: go test -v main_test.go 
       
-  
   build:
     needs: test
     runs-on: ${{ matrix.os }}
@@ -49,6 +48,6 @@ jobs:
     - name: Build
       run: go build -v main.go
 
-    docker:
-      needs: build
-      uses: ./.github/workflows/docker.yml
+  docker:
+    needs: build
+    uses: ./.github/workflows/docker.yml
