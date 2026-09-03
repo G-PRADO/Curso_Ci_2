@@ -17,11 +17,6 @@ jobs:
       with:
         name: programa
 
-    - name: Download a Build Artifact
-      uses: actions/download-artifact@v4
-      with:
-        name: programa
-
     - name: Docker Login
       uses: docker/login-action@v4.6.0
       with:
